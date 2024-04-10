@@ -1,6 +1,6 @@
 <h2>{{master}} обслуживает {{machines.length}} машины</h2>
     <app-list-item
       *ngFor="let machine of machines"
-      [machine]="machine">
+      [machine]="machine.name">
     </app-list-item>
 

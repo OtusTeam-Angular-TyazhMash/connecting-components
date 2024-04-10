@@ -7,7 +7,7 @@ import { Machine } from '../models/Machine';
   styleUrls: ['./list-item.component.scss']
 })
 export class ListItemComponent {
-  @Input({required: true}) machine!: Machine; ;
+  @Input() machine!: string; ;
 
   
 }
