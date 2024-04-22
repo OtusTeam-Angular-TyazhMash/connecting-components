@@ -1,7 +1,11 @@
-<h2>{{master}} обслуживает {{machines.length}} машины</h2>
-<h3>Выполнено: {{doneCount}}</h3>
+<h2>{{ master }} обслуживает {{ machines.length }} машины</h2>
+<h3>Выполнено: {{ doneCount }}</h3>
 
+<ng-container *ngFor="let machine of machines">
   <app-list-item
-  *ngFor="let machine of machines"
-  [service]="machine" (isDone)="onDone($event)">
-</app-list-item>
+    *ngIf="!machine.serviceDone"
+    [service]="machine"
+    (isDone)="onDone($event)"
+  >
+  </app-list-item>
+</ng-container>

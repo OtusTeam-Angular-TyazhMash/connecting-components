@@ -1,3 +1,37 @@
-<p>orders works!</p>
+<p appHighlight>orders works!</p>
 
-<ul><li *ngFor="let order of orders">{{order}}</li></ul>
+<ul appHighlight *ngIf="orders && orders.length > 0; else noOrders">
+  <li *ngFor="let order of orders">{{ order }}</li>
+</ul>
+
+<ng-template #noOrders>
+  <p>У вас ещё нет заказов :( . Но это легко исправить!</p>
+  <button>Создать</button>
+</ng-template>
+<app-alert type="success"><p>!!!</p></app-alert>
+<app-alert type="success">
+  <ng-container ngProjectAs="[body]">
+    <ul>
+      <li>
+        <span>Label</span>
+        <input />
+        <button>Button</button>
+      </li>
+      <li>
+        <span>Label</span>
+        <input />
+        <button>Button</button>
+      </li>
+      <li>
+        <span>Label</span>
+        <input />
+        <button>Button</button>
+      </li>
+    </ul>
+  </ng-container>
+  <h1 title>This is title!</h1>
+  <ng-container ngProjectAs="[footer]">
+    <input type="email" placeholder="Please enter email" />
+    <button>Send</button>
+  </ng-container>
+</app-alert>
