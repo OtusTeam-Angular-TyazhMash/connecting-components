@@ -7,5 +7,11 @@ import { Machine } from '../models/Machine';
   styleUrls: ['./list-item.component.scss']
 })
 export class ListItemComponent {
-  @Input() machine!: string; 
+  @Input({required:true, alias: "service"}) machine!: Machine;
+  @Output() isDone = new EventEmitter();
+
+  done(){
+    this.machine.serviceDone = true;
+    this.isDone.emit(this.machine);
+  }
 }

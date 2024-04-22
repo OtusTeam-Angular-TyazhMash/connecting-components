@@ -9,4 +9,11 @@ import { MACHINES, Machine } from '../models/Machine';
 export class ListComponent {
   machines = MACHINES;
   master = 'Иванов';
+  doneCount: number = 0;
+
+  onDone(machine: Machine){
+    this.doneCount++;
+    const index = this.machines.findIndex(m =>m.id == machine.id);
+    this.machines[index] = machine;
+  }
 }

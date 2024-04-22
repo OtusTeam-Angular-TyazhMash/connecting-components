@@ -1,6 +1,7 @@
 <h2>{{master}} обслуживает {{machines.length}} машины</h2>
-    <app-list-item
-      *ngFor="let machine of machines"
-      [machine]="machine.name">
-    </app-list-item>
+<h3>Выполнено: {{doneCount}}</h3>
 
+  <app-list-item
+  *ngFor="let machine of machines"
+  [service]="machine" (isDone)="onDone($event)">
+</app-list-item>
