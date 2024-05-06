@@ -1,0 +1,58 @@
+<form [formGroup]="machineForm" (ngSubmit)="onSubmit()">
+    <label for="make">Марка: </label>
+    <input id="make" type="text" formControlName="make" />
+    <div
+    *ngIf="make?.invalid && (make?.dirty || make?.touched)"
+    class="alert alert-danger"
+  >
+    <div *ngIf="make?.errors?.['required']">Name is required.</div>
+    <div *ngIf="make?.errors?.['minlength']">
+      Name must be at least 4 characters long.
+    </div>
+    <div *ngIf="make?.errors?.['forbiddenName']">
+      Name cannot be Bob.
+    </div>
+  </div>
+    <label for="model">Модель: </label>
+    <input id="model" type="text" formControlName="model" />
+  
+    <label for="year">Год выпуска: </label>
+    <input id="year" type="text" formControlName="year" />
+  
+    <label for="vin">VIN: </label>
+    <input id="vin" type="text" formControlName="vin" />
+    <div *ngIf="machineForm.controls['vin'].invalid && (machineForm.controls['vin'].dirty || machineForm.controls['vin'].touched)">
+      <div *ngIf="machineForm.controls['vin'].errors?.['required']">VIN is required</div>
+      <div *ngIf="machineForm.controls['vin'].errors?.['invalidVIN']">Invalid VIN format</div>
+  </div>
+    <ul>
+      <li *ngFor="let error of machineForm.controls['vin'].errors| keyvalue">{{ error.key }}{{ error.value }}</li>
+    </ul>
+    <label for="number">Номер: </label>
+    <input id="number" type="text" formControlName="number" />
+  
+    <button (click)="addService()">Add</button>
+    <div formArrayName="services">
+      <div *ngFor="let service of services.controls; let i = index">
+        <div [formGroup]="service">
+          <input formControlName="date" />
+          <input formControlName="place" />
+          <button (click)="removeService(i)">Удалить</button>
+        </div>
+        
+      </div>
+    </div>
+    <div formRecordName="dynamic">
+      <div *ngFor="let control of dynamic.controls | keyvalue">
+        
+          <input [formControlName]="control.key" />
+        
+      </div>
+    </div>
+    <button (click)="addDynamic()">Добавить контрол</button>
+    
+  
+    <button type="submit">Сохранить</button>
+    <button type="button" (click)="onPatch()">Обновить</button>
+  </form>
+  
