@@ -1,0 +1,8 @@
+<div class="search-container">
+    <input #inputElement type="text" placeholder="Search...">
+    <div *ngIf="loading" class="loading-indicator">Loading...</div>
+    <ul *ngIf="data$ | async as resultsAsync">
+      <li *ngFor="let result of resultsAsync">{{ result.gender }} ({{ result.probability *100}} %)</li>
+    </ul>
+  </div>
+  

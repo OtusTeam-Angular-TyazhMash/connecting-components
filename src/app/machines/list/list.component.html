@@ -1,11 +1,16 @@
-<h2>{{ master }} обслуживает {{ machines.length }} машины</h2>
-<h3>Выполнено: {{ doneCount }}</h3>
-
-<ng-container *ngFor="let machine of machines">
-  <app-list-item
-    *ngIf="!machine.serviceDone"
-    [service]="machine"
-    (isDone)="onDone($event)"
-  >
-  </app-list-item>
-</ng-container>
+<!-- <h2>{{ master }} обслуживает {{ machines.length }} машины</h2>
+<h3>Выполнено: {{ doneCount }}</h3> -->
+<button (click)="toggleChild()">
+  {{ showChild ? 'Remove' : 'Add' }} Child Component
+</button>
+<div *ngIf="showChild">
+  <app-search></app-search>
+</div>
+<app-search></app-search>
+<!-- <cdk-virtual-scroll-viewport itemSize="20" class="viewport">
+  
+    <app-list-item *ngFor="let machine of machines"
+      [service]="machine"
+      (isDone)="onDone($event)">
+    </app-list-item>
+</cdk-virtual-scroll-viewport> -->
