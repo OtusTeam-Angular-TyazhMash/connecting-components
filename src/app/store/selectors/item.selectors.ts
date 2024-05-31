@@ -1,15 +1,15 @@
 // src/app/store/selectors/item.selectors.ts
-import { createSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { AppState } from '../state';
 import { ItemState } from '../state';
+import { adapter } from '../reducers/item.reducer';
 
-export const selectItemState = (state: AppState) => state.items;
-//export const selectItemState = createFeatureSelector<AppState, ItemState>('items');
+//export const selectItemState = (state: AppState) => state.items;
+export const selectItemState = createFeatureSelector<AppState, ItemState>('items');
 
-export const selectItemList = createSelector(
-  selectItemState,
-  (state: ItemState) => state.list
-);
+export const {
+  selectAll
+} = adapter.getSelectors(selectItemState);
 
 export const selectItemLoading = createSelector(
   selectItemState,

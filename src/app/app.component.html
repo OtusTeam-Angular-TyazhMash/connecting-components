@@ -1,7 +1,8 @@
 <div *ngIf="loading$ | async">Loading...</div>
 <div *ngIf="error$ | async as error">{{ error }}</div>
 <ul>
-  <li *ngFor="let item of items$ | async">{{ item }}</li>
+  <li *ngFor="let item of items$ | async">{{ item.name }}</li>
 </ul>
 <input [(ngModel)]="newItem" placeholder="New item" />
 <button (click)="addNewItem()">Add Item</button>
+<button (click)="updateAllNames()">update all</button>

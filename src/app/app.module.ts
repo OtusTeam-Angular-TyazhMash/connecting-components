@@ -9,6 +9,7 @@ import { ItemEffects } from './store/effects/item.effects';
 import { reducers } from './store/reducers';
 import { FormsModule } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    HttpClientModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([ItemEffects]),    
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
