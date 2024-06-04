@@ -6,7 +6,7 @@ import { AppState } from './store/state';
 import { loadItems, addItem, updateAllNames } from './store/actions/item.actions';
 import { selectAll, selectItemLoading, selectItemError } from './store/selectors/item.selectors';
 import { Item } from './models/item';
-
+import { routerActions } from './store/actions/router.actions';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -39,4 +39,14 @@ export class AppComponent implements OnInit {
   updateAllNames(){
     this.store.dispatch(updateAllNames());
   }
+
+  loadPage(){
+    this.store.dispatch(routerActions.navigate({ path: ['/machines']}));
+  }
+
+  replacePage(){
+    this.store.dispatch(routerActions.navigateReplace({ path: ['/machines/new']}));
+  }
 }
+
+

@@ -10,6 +10,9 @@ import { reducers } from './store/reducers';
 import { FormsModule } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
+import { RouterEffects } from './store/effects/router.effects';
+import { CustomSerializer } from './store/reducers/router.reducer';
 
 @NgModule({
   declarations: [
@@ -21,12 +24,13 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([ItemEffects]),    
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
+    EffectsModule.forRoot([ItemEffects, RouterEffects]), 
+    StoreRouterConnectingModule.forRoot(),   
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }), StoreRouterConnectingModule.forRoot()
   ],
   exports:[],
 
-  providers: [],
+  providers: [{provide: RouterStateSerializer, useClass: CustomSerializer}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
