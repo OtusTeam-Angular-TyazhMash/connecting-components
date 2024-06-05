@@ -4,12 +4,19 @@
   <li *ngFor="let item of items$ | async">{{ item.name }}</li>
 </ul>
 <input [(ngModel)]="newItem" placeholder="New item" />
-<button (click)="addNewItem()">Add Item</button>
-<button (click)="updateAllNames()">update all</button>
+<button (click)="addNewItem()" i18n="@@add_item">Add Item</button>
+<button (click)="updateAllNames()" i18n>update all</button>
 
 
 
 <button (click)="loadPage()">Load Page</button>
 <button (click)="replacePage()">Replace Page</button>
+
+<div>
+  <h1>{{ 'WELCOME' | translate }}</h1>
+  <p>{{ 'HELLO' | translate }}</p>
+  <button (click)="switchLanguage('en')">English</button>
+  <button (click)="switchLanguage('ru')">Russian</button>
+</div>
 
 <router-outlet></router-outlet>

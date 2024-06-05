@@ -13,10 +13,20 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "en-US",        
+        "locales": {
+          "ru": {
+            "translation": "src/locale/messages.ru.xlf"
+          }
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "localize":["ru"],
+            "aot": true,
             "outputPath": "dist/cource-workspace",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -35,6 +45,7 @@
             "scripts": []
           },
           "configurations": {
+           
             "production": {
               "budgets": [
                 {

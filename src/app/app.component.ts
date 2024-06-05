@@ -7,6 +7,7 @@ import { loadItems, addItem, updateAllNames } from './store/actions/item.actions
 import { selectAll, selectItemLoading, selectItemError } from './store/selectors/item.selectors';
 import { Item } from './models/item';
 import { routerActions } from './store/actions/router.actions';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -18,10 +19,17 @@ export class AppComponent implements OnInit {
   error$: Observable<string | null>;
   newItem: string = '';
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private translate: TranslateService) {
     this.items$ = this.store.select(selectAll);
     this.loading$ = this.store.select(selectItemLoading);
-    this.error$ = this.store.select(selectItemError);
+    this.error$ = this.store.select(selectItemError); 
+    this.translate.setDefaultLang('en');
+    // Optionally, you can use a different language
+    this.translate.use('ru');
+  }
+
+  switchLanguage(language: string) {
+    this.translate.use(language);
   }
 
   ngOnInit() {

@@ -9,11 +9,18 @@ import { ItemEffects } from './store/effects/item.effects';
 import { reducers } from './store/reducers';
 import { FormsModule } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { RouterEffects } from './store/effects/router.effects';
 import { CustomSerializer } from './store/reducers/router.reducer';
 
+
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 @NgModule({
   declarations: [
     AppComponent
@@ -26,6 +33,13 @@ import { CustomSerializer } from './store/reducers/router.reducer';
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([ItemEffects, RouterEffects]), 
     StoreRouterConnectingModule.forRoot(),   
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }), StoreRouterConnectingModule.forRoot()
   ],
   exports:[],
